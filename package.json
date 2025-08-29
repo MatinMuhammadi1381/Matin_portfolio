@@ -1,8 +1,5 @@
-
-
-
 {
-  "homepage": "https://MatinMohamady0081.github.io/Portfolio",
+  "homepage": "https://MatinMuhammadi1381.github.io/portfolio",
   "name": "project",
   "private": true,
   "version": "0.0.0",
@@ -14,7 +11,6 @@
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
-
   },
   "dependencies": {
     "@radix-ui/react-toast": "^1.2.15",
