@@ -8,8 +8,8 @@ export const Footer = () => {
         &copy; {new Date().getFullYear()} MatinMuhammadi.co. All Rights Reserve.
       </p>
 
-      <a
-        href="#hero"
+      <a href="#hero"
+        id="#hero"
         className=" p-2 rounded-full bg-primary/20 hover:bg-primary/30 text text-primary transition-colors "
       >
         <ArrowUp size={20} />

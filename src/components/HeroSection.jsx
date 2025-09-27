@@ -19,15 +19,20 @@ export const HeroSection = () => {
             </span>
           </h1>
 
-          <p className=" text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            برنامه‌نویس رابط کاربری با تخصص در طراحی و پیاده‌سازی وب‌سایت‌های
-            مدرن و کاربرپسند. بیش از چهار سال است که به صورت جدی در زمینه‌ی
-            برنامه‌نویسی فعالیت می‌کنم و با زبان‌ها و ابزارهای مختلف طراحی و
-            توسعه‌ی وب آشنا هستم.
+          <p className=" text-lg md:text-xl -mb-7 text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
+            برنامه‌نویس رابط کاربری با بیش از چهار سال تجربه
+            <br />           </p>
+           <p className=" text-lg md:text-xl mt-10 text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
+            در طراحی و پیاده‌سازی وب‌سایت‌های مدرن و
+            کاربرپسند
+          </p>
+          <p className=" text-lg md:text-xl -mt-3 text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
+            مسلط به زبان‌ها و ابزارهای متنوع توسعه‌ی وب و تمرکز بر ایجاد رابط
+            کاربری بهینه و استاندارد
           </p>
 
           <div className=" pt-4 opacity-0 animate-fade-in-delay-4">
-            <a href="#projects" className=" cosmic-button">
+            <a href="#projects" id="#projects" className=" cosmic-button">
               دیدن پروژه های من
             </a>
           </div>

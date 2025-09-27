@@ -11,5 +11,5 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
-  base: "/portfolio/", // 👈 اسم ریپو رو دقیق بذار
+  base: "/Matin_portfolio/", 
 });

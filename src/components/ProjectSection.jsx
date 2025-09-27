@@ -3,30 +3,40 @@ import { ArrowRight, ExternalLinkIcon, Github } from "lucide-react";
 const projects = [
   {
     id: 1,
+    title: "سایت نمایش هوش مصنوعی",
+    description:
+      "سایتی برای نمایش هوش مصنوعی طراحی زیبا و شیک و نشان دهنده ی برای این که سایت هایی با ورودی تک صفحه ای و نشنان دادن زیبایی و سادگی در طراحی های خاص",
+    Image: "./Landing_page.png",
+    Tags: ["React", "Tailwind CSS", "Radix UI", "TypeScript"],
+    demoUrl: "https://matinmuhammadi1381.github.io/Landing_page/",
+    githubUrl: "https://github.com/matinmuhammadi1381/Landing_page",
+  },
+  {
+    id: 2,
     title: "سایت نمایش محصولات نایک",
     description:
       "یه سایت با طراحی مینیمال و شیک برای نمایش محصولات نایک همراه با عکس و انیمیشن های مختلف با استفاده از ریکت و تیلویند ساخته شده",
-    Image: "/projects/Nike.png",
+    Image: "./Nike.png",
     Tags: ["React", "Tailwind CSS", "Radix UI"],
     demoUrl: "https://matinmohamady0081.github.io/nike-project/",
     githubUrl: "https://github.com/MatinMohamady0081/nike-project",
   },
   {
-    id: 2,
+    id: 3,
     title: " سایتی آینده نگری برای بانکها ",
     description:
       "سایت با طراحی مدرن و دیدگاهی جدید به آینده ای مدرن از بانک ها  ساخته شده با طراحی یونیک و انیمیشن های مختلف با ریکت و تیلویند",
-    Image: "/projects/Bank.png",
+    Image: "./Bank.png",
     Tags: ["React", "Tailwind CSS", "Radix UI"],
     demoUrl: "https://matinmohamady0081.github.io/bank-project/",
     githubUrl: "https://github.com/MatinMohamady0081/bank-project",
   },
   {
-    id: 3,
+    id: 4,
     title: " سایت ساخت فاکتور شرکتی ",
     description:
       "سایتی برای ساخت بارکد و فاکتور های شرکتی با طراحی ساده و مینیمال و راحت برای شرکت های کوچیک و بزرگ ساخته شده با ریمت ئ متریال یئ ای ",
-    Image: "/projects/factor.png",
+    Image: "./factor.png",
     Tags: ["React", "metrial ui", "Radix UI"],
     demoUrl: "https://github.com/MatinMohamady0081/project1",
     githubUrl: "https://github.com/MatinMohamady0081/project1",
