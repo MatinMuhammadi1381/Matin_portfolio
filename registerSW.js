@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/Matin_portfolio/sw.js', { scope: '/Matin_portfolio/' })})}
