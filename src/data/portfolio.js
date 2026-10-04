@@ -551,7 +551,7 @@ export const projects = [
       fa: "رابط صفحهٔ فرود SaaS با نام EdgeAI",
     },
     github: "https://github.com/MatinMuhammadi1381/Landing_page",
-    demo: null,
+    demo: "https://MatinMuhammadi1381.github.io/Landing_page/",
     featured: false,
   },
   {
