@@ -10,7 +10,7 @@ import { SkillsSection } from "../components/SkillsSection";
 export const Home = () => (
   <>
     <Navbar />
-    <main>
+    <main id="main-content" tabIndex="-1">
       <HeroSection />
       <AboutSection />
       <ProjectSection />

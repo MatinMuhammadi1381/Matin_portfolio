@@ -45,6 +45,7 @@ export const copy = {
       language: "Switch language to Persian",
       openMenu: "Open navigation menu",
       closeMenu: "Close navigation menu",
+      skipContent: "Skip to content",
     },
     hero: {
       eyebrow: "Frontend developer · Growing into full-stack",
@@ -88,10 +89,12 @@ export const copy = {
     },
     experience: {
       eyebrow: "Experience & learning",
-      title: "Built through client work, practice and curiosity.",
+      title: "Experience shaped by people, products and practice.",
+      professionalHeading: "Professional experience",
+      independentHeading: "Independent projects & learning",
       freelanceTitle: "Freelance Front-End Developer",
       freelanceMeta: "International clients · Upwork / Fiverr",
-      freelanceDate: "2021 to present",
+      freelanceDate: "2020 to present",
       freelanceDescription:
         "Delivering frontend work for international clients, with a focus on React, responsive interfaces and implementing clear product experiences.",
       internshipTitle: "Front-End Developer Intern",
@@ -229,6 +232,7 @@ export const copy = {
       language: "تغییر زبان به انگلیسی",
       openMenu: "بازکردن منوی پیمایش",
       closeMenu: "بستن منوی پیمایش",
+      skipContent: "رفتن به محتوای اصلی",
     },
     hero: {
       eyebrow: "توسعه‌دهندهٔ فرانت‌اند · در مسیر فول‌استک",
@@ -272,10 +276,12 @@ export const copy = {
     },
     experience: {
       eyebrow: "تجربه و یادگیری",
-      title: "مسیر کاری با پروژه، تجربه و کنجکاوی شکل می‌گیرد.",
+      title: "تجربه با همکاری، ساخت محصول و تمرین شکل می‌گیرد.",
+      professionalHeading: "سوابق حرفه‌ای",
+      independentHeading: "پروژه‌های مستقل و یادگیری",
       freelanceTitle: "توسعه‌دهندهٔ فرانت‌اند آزادکار",
       freelanceMeta: "مشتریان بین‌المللی · Upwork / Fiverr",
-      freelanceDate: "۲۰۲۱ تا اکنون",
+      freelanceDate: "۲۰۲۰ تا اکنون",
       freelanceDescription:
         "انجام پروژه‌های فرانت‌اند برای مشتریان بین‌المللی با تمرکز بر React، رابط‌های واکنش‌گرا و پیاده‌سازی تجربهٔ کاربری روشن.",
       internshipTitle: "کارآموز توسعهٔ فرانت‌اند",

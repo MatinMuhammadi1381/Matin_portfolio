@@ -64,84 +64,89 @@ export const Navbar = () => {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <header className={`site-header${isScrolled ? " is-scrolled" : ""}`}>
-      <div className="site-container navbar">
-        <a className="brand" href="#hero" onClick={closeMenu}>
-          <img
-            className="brand__mark"
-            src={`${import.meta.env.BASE_URL}logo.svg`}
-            alt=""
-            width="38"
-            height="38"
-            aria-hidden="true"
-          />
-          <span className="brand__name">Matin Mohammadi</span>
-        </a>
+    <>
+      <a className="skip-link" href="#main-content">
+        {t.nav.skipContent}
+      </a>
+      <header className={`site-header${isScrolled ? " is-scrolled" : ""}`}>
+        <div className="site-container navbar">
+          <a className="brand" href="#hero" onClick={closeMenu}>
+            <img
+              className="brand__mark"
+              src={`${import.meta.env.BASE_URL}logo.svg`}
+              alt=""
+              width="38"
+              height="38"
+              aria-hidden="true"
+            />
+            <span className="brand__name">Matin Mohammadi</span>
+          </a>
 
-        <nav
-          className="navbar__links"
-          aria-label={isPersian ? "پیمایش اصلی" : "Primary navigation"}
-        >
-          {links.map(({ id, key }) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              className={activeSection === id ? "is-active" : ""}
-              aria-current={activeSection === id ? "location" : undefined}
-            >
-              {t.nav[key]}
-            </a>
-          ))}
-        </nav>
-
-        <div className="navbar__actions">
-          <button
-            className="language-switch"
-            type="button"
-            onClick={() => setLanguage(isPersian ? "en" : "fa")}
-            aria-label={t.nav.language}
+          <nav
+            className="navbar__links"
+            aria-label={isPersian ? "پیمایش اصلی" : "Primary navigation"}
           >
-            <span className={!isPersian ? "is-current" : ""}>EN</span>
-            <span className="language-switch__divider" aria-hidden="true">
-              /
-            </span>
-            <span className={isPersian ? "is-current" : ""}>FA</span>
-          </button>
-
-          <button
-            className="menu-toggle"
-            type="button"
-            aria-label={menuOpen ? t.nav.closeMenu : t.nav.openMenu}
-            aria-expanded={menuOpen}
-            aria-controls={menuOpen ? "mobile-navigation" : undefined}
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-      </div>
-
-      {menuOpen && (
-        <nav
-          className="mobile-navigation"
-          id="mobile-navigation"
-          aria-label={isPersian ? "پیمایش اصلی" : "Mobile navigation"}
-        >
-          <div className="site-container mobile-navigation__inner">
             {links.map(({ id, key }) => (
               <a
                 key={id}
                 href={`#${id}`}
                 className={activeSection === id ? "is-active" : ""}
                 aria-current={activeSection === id ? "location" : undefined}
-                onClick={closeMenu}
               >
                 {t.nav[key]}
               </a>
             ))}
+          </nav>
+
+          <div className="navbar__actions">
+            <button
+              className="language-switch"
+              type="button"
+              onClick={() => setLanguage(isPersian ? "en" : "fa")}
+              aria-label={t.nav.language}
+            >
+              <span className={!isPersian ? "is-current" : ""}>EN</span>
+              <span className="language-switch__divider" aria-hidden="true">
+                /
+              </span>
+              <span className={isPersian ? "is-current" : ""}>FA</span>
+            </button>
+
+            <button
+              className="menu-toggle"
+              type="button"
+              aria-label={menuOpen ? t.nav.closeMenu : t.nav.openMenu}
+              aria-expanded={menuOpen}
+              aria-controls={menuOpen ? "mobile-navigation" : undefined}
+              onClick={() => setMenuOpen((open) => !open)}
+            >
+              {menuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
           </div>
-        </nav>
-      )}
-    </header>
+        </div>
+
+        {menuOpen && (
+          <nav
+            className="mobile-navigation"
+            id="mobile-navigation"
+            aria-label={isPersian ? "پیمایش اصلی" : "Mobile navigation"}
+          >
+            <div className="site-container mobile-navigation__inner">
+              {links.map(({ id, key }) => (
+                <a
+                  key={id}
+                  href={`#${id}`}
+                  className={activeSection === id ? "is-active" : ""}
+                  aria-current={activeSection === id ? "location" : undefined}
+                  onClick={closeMenu}
+                >
+                  {t.nav[key]}
+                </a>
+              ))}
+            </div>
+          </nav>
+        )}
+      </header>
+    </>
   );
 };

@@ -2,11 +2,15 @@ import { BriefcaseBusiness, GraduationCap, Sparkles } from "lucide-react";
 import { copy } from "../data/portfolio";
 import { useLanguage } from "../context/useLanguage";
 
-const entries = [
-  { key: "freelance" },
-  { key: "internship" },
-  { key: "storeOwner" },
-  { key: "learning" },
+const groups = [
+  {
+    title: "professionalHeading",
+    entries: ["freelance", "internship", "storeOwner"],
+  },
+  {
+    title: "independentHeading",
+    entries: ["learning"],
+  },
 ];
 
 export const ExperienceSection = () => {
@@ -24,36 +28,45 @@ export const ExperienceSection = () => {
           <h2>{t.title}</h2>
         </div>
 
-        <div className="experience-list">
-          {entries.map(({ key }) => (
-            <article className="experience-item" key={key}>
-              <div className="experience-item__icon">
-                {key === "learning" ? (
-                  <GraduationCap size={19} aria-hidden="true" />
-                ) : (
-                  <BriefcaseBusiness size={19} aria-hidden="true" />
-                )}
+        <div className="experience-groups">
+          {groups.map(({ title, entries }) => (
+            <div className="experience-group" key={title}>
+              <h3 className="experience-group__title">{t[title]}</h3>
+              <div className="experience-list">
+                {entries.map((key) => (
+                  <article className="experience-item" key={key}>
+                    <div className="experience-item__icon">
+                      {key === "learning" ? (
+                        <GraduationCap size={19} aria-hidden="true" />
+                      ) : (
+                        <BriefcaseBusiness size={19} aria-hidden="true" />
+                      )}
+                    </div>
+                    <div className="experience-item__body">
+                      <div className="experience-item__heading">
+                        <h4>{t[`${key}Title`]}</h4>
+                        <span>{t[`${key}Date`]}</span>
+                      </div>
+                      {key !== "learning" && (
+                        <p className="experience-item__meta">
+                          {t[`${key}Meta`]}
+                        </p>
+                      )}
+                      <p className="experience-item__description">
+                        {t[`${key}Description`]}
+                      </p>
+                    </div>
+                    {key === "learning" && (
+                      <Sparkles
+                        className="experience-item__spark"
+                        size={16}
+                        aria-hidden="true"
+                      />
+                    )}
+                  </article>
+                ))}
               </div>
-              <div className="experience-item__body">
-                <div className="experience-item__heading">
-                  <h3>{t[`${key}Title`]}</h3>
-                  <span>{t[`${key}Date`]}</span>
-                </div>
-                {key !== "learning" && (
-                  <p className="experience-item__meta">{t[`${key}Meta`]}</p>
-                )}
-                <p className="experience-item__description">
-                  {t[`${key}Description`]}
-                </p>
-              </div>
-              {key === "learning" && (
-                <Sparkles
-                  className="experience-item__spark"
-                  size={16}
-                  aria-hidden="true"
-                />
-              )}
-            </article>
+            </div>
           ))}
         </div>
       </div>

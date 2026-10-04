@@ -41,6 +41,14 @@ export function LanguageProvider({ children }) {
       'meta[property="og:description"]'
     );
     openGraphDescription?.setAttribute("content", metadata.description);
+
+    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+    twitterTitle?.setAttribute("content", metadata.title);
+
+    const twitterDescription = document.querySelector(
+      'meta[name="twitter:description"]'
+    );
+    twitterDescription?.setAttribute("content", metadata.description);
   }, [language]);
 
   const value = useMemo(
