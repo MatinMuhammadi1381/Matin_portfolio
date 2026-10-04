@@ -22,12 +22,15 @@ const technologyIcons = {
   Android: "android",
 };
 
+export const getTechnologyIcon = (name) =>
+  technologyIcons[name]
+    ? `${import.meta.env.BASE_URL}tech-icons/${technologyIcons[name]}.svg`
+    : null;
+
 const withTechnologyIcons = (technologies) =>
   technologies.map((name) => ({
     name,
-    icon: technologyIcons[name]
-      ? `${import.meta.env.BASE_URL}tech-icons/${technologyIcons[name]}.svg`
-      : null,
+    icon: getTechnologyIcon(name),
   }));
 
 export const copy = {

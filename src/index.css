@@ -977,6 +977,9 @@ img {
 }
 
 .technology-list li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   padding: 4px 8px;
   border: 1px solid rgba(76, 139, 250, 0.16);
   border-radius: 6px;
@@ -985,6 +988,18 @@ img {
   font-family: "DM Sans", "Vazirmatn", sans-serif;
   font-size: 0.66rem;
   line-height: 1.5;
+}
+
+.technology-list li img,
+.technology-list li svg {
+  inline-size: 15px;
+  block-size: 15px;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.technology-list li svg {
+  color: var(--color-cyan);
 }
 
 .project-actions {

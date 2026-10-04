@@ -1,5 +1,5 @@
-import { ArrowUpRight, Github, Globe2 } from "lucide-react";
-import { copy, projects } from "../data/portfolio";
+import { ArrowUpRight, Code2, Github, Globe2 } from "lucide-react";
+import { copy, getTechnologyIcon, projects } from "../data/portfolio";
 import { useLanguage } from "../context/useLanguage";
 
 const ProjectActions = ({ project, title, t }) => (
@@ -38,7 +38,21 @@ const ProjectActions = ({ project, title, t }) => (
 const TechnologyList = ({ technologies, label }) => (
   <ul className="technology-list" aria-label={label}>
     {technologies.map((technology) => (
-      <li key={technology}>{technology}</li>
+      <li key={technology}>
+        {getTechnologyIcon(technology) ? (
+          <img
+            src={getTechnologyIcon(technology)}
+            alt=""
+            aria-hidden="true"
+            width="15"
+            height="15"
+            loading="lazy"
+          />
+        ) : (
+          <Code2 size={15} aria-hidden="true" />
+        )}
+        <span>{technology}</span>
+      </li>
     ))}
   </ul>
 );
