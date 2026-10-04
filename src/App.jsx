@@ -1,15 +1,13 @@
-import { HashRouter } from "react-router-dom";
+import { LanguageProvider } from "./context/LanguageProvider";
 import { Home } from "./pages/Home";
-import { Toaster } from "@/components/ui/toaster";
 
 function App() {
   return (
-    <>
-      <Toaster />
-      <HashRouter>
+    <LanguageProvider>
+      <div className="site-shell">
         <Home />
-      </HashRouter>
-    </>
+      </div>
+    </LanguageProvider>
   );
 }
 

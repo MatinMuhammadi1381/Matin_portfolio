@@ -12,16 +12,9 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "@radix-ui/react-toast": "^1.2.15",
-    "@tailwindcss/vite": "^4.1.12",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
     "lucide-react": "^0.541.0",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "react-router-dom": "^7.8.2",
-    "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.12"
+    "react-dom": "^19.1.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
@@ -33,6 +26,10 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "gh-pages": "^6.3.0",
     "globals": "^16.3.0",
-    "vite": "^7.1.2"
+    "vite": "^7.1.2",
+    "vite-plugin-pwa": "^1.1.0"
+  },
+  "overrides": {
+    "rollup": "4.59.0"
   }
 }

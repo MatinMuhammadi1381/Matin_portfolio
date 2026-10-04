@@ -1,178 +1,123 @@
-import {
-  Github,
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Send,
-  Truck,
-  Twitter,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
-import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import { ArrowUpRight, Github, Instagram, Mail } from "lucide-react";
+import { copy } from "../data/portfolio";
+import { useLanguage } from "../context/useLanguage";
+
+const emailAddress = "matin.muhammadi.2001@gmail.com";
+const githubUrl = "https://github.com/MatinMuhammadi1381";
+const instagramUrl = "https://instagram.com/matin_muhammadi.2001";
 
 export const ContactSection = () => {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const { language } = useLanguage();
+  const t = copy[language].contact;
+  const [isPrepared, setIsPrepared] = useState(false);
 
-    setIsSubmitting(true);
-    setTimeout(() => {
-      toast({
-        title: "ارسال شد",
-        description: "پیام شما با موفقیت ارسال شد",
-        type: "success",
-      });
-    }, 1500);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const subject = encodeURIComponent(
+      `${t.emailSubject} ${formData.get("name")}`
+    );
+    const body = encodeURIComponent(
+      `${formData.get("message")}\n\n${t.replyTo}: ${formData.get("email")}`
+    );
 
-    setIsSubmitting(false);
+    window.location.href = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
+    setIsPrepared(true);
   };
+
   return (
-    <section id="contacts" className=" py-24 px-4 relative bg-secondary/30">
-      <div className=" container mx-auto max-w-5xl">
-        <h2 className=" text-3xl md:text-4xl font-bold mb-4 text-center">
-          <span className=" text-primary">ارتباط</span> با من
-        </h2>
+    <section className="section section-anchor" id="contact">
+      <div className="site-container">
+        <div className="contact-panel">
+          <div className="contact-copy">
+            <p className="eyebrow">{t.eyebrow}</p>
+            <h2>{t.title}</h2>
+            <p className="contact-copy__intro">{t.intro}</p>
 
-        <p className=" text-center text-mued-foreground mb-12 max-w-2xl mx-auto">
-          برای ارتباط با من ایمیل یا از شبکه های اجتماعی پیام بدین منتظر پروژه
-          های شما هستم برای اطلاعات بیشتر پیام بدین
-        </p>
-
-        <div className=" grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className=" space-y-8">
-            <h3 className=" text-2xl font-semibold mb-6">اطلاعات تماس</h3>
-            <div className=" space-y-6 justify-center">
-              <div className=" flex items-start space-x-4">
-                <div className=" p-3 rounded-full bg-primary/20">
-                  <Mail className=" h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className=" font-medium text-left">Email</h4>
-                  <a
-                    href="mailto:matin.muhammadi.2001@gmail.com"
-                    className=" text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    Matin.Muhammadi.2001@gmail.com
-                  </a>
-                </div>
-              </div>
-              <div className=" flex items-start space-x-4">
-                <div className=" p-3 rounded-full bg-primary/20">
-                  <Phone className=" h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className=" font-medium text-left">Phone</h4>
-                  <a
-                    href="tel:+989038049915"
-                    className=" text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    +98 09038049915
-                  </a>
-                </div>
-              </div>
-              <div className=" flex items-start space-x-4">
-                <div className=" p-3 rounded-full bg-primary/20">
-                  <MapPin className=" h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className=" font-medium text-left">Location</h4>
-                  <a className=" text-muted-foreground hover:text-primary transition-colors">
-                    sanandaj, Iran
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className=" pt-8">
-              <h4 className=" font-medium mb-4">شبکه های اجتماعی</h4>
-              <div className=" flex space-x-4 justify-center">
-                <a target="_blank" href="#">
-                  <Linkedin />
-                </a>
-                <a target="_blank" href="https://instagram.com/matin_m.2001">
-                  <Instagram />
-                </a>
-                <a target="_blank" href="#">
-                  <Twitter />
-                </a>
-                <a target="_blank" href="https://github.com/MatinMuhammadi1381">
-                  <Github />
-                </a>
-              </div>
+            <div className="contact-links">
+              <a href={`mailto:${emailAddress}`} className="contact-link">
+                <span className="contact-link__icon">
+                  <Mail size={18} aria-hidden="true" />
+                </span>
+                <span>
+                  <small>{t.emailLabel}</small>
+                  <strong>{emailAddress}</strong>
+                </span>
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+              <a
+                href={githubUrl}
+                className="contact-link"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="contact-link__icon">
+                  <Github size={18} aria-hidden="true" />
+                </span>
+                <span>
+                  <small>{t.githubLabel}</small>
+                  <strong>MatinMuhammadi1381</strong>
+                </span>
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+              <a
+                href={instagramUrl}
+                className="contact-link"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="contact-link__icon">
+                  <Instagram size={18} aria-hidden="true" />
+                </span>
+                <span>
+                  <small>{t.instagramLabel}</small>
+                  <strong>@matin_muhammadi.2001</strong>
+                </span>
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
             </div>
           </div>
 
-          <div
-            className=" bg-card p-8 rounded-lg shadow-xs"
-            onSubmit={handleSubmit}
-          >
-            <h3 className=" text-2xl font-semibold mb-6">تماس از طریق ایمیل</h3>
-
-            <form action="" className=" space-y-6">
-              <div>
-                <label
-                  htmlFor="name"
-                  className=" text-right text-xl block font-medium mb-2"
-                >
-                  {" "}
-                  اسم
-                </label>
+          <div className="contact-form-wrap">
+            <h3>{t.formTitle}</h3>
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <label>
+                <span>{t.name}</span>
                 <input
-                  type="text"
-                  id="name"
+                  autoComplete="name"
                   name="name"
+                  placeholder={t.namePlaceholder}
                   required
-                  className=" text-right w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
-                  placeholder="....نام خود را وارد کنید"
                 />
-              </div>
-              <div>
-                <label
-                  htmlFor="name"
-                  className=" text-right text-xl block font-medium mb-2"
-                >
-                  {" "}
-                  ایمیل شما
-                </label>
+              </label>
+              <label>
+                <span>{t.email}</span>
                 <input
-                  type="email"
-                  id="email"
+                  autoComplete="email"
+                  dir="ltr"
                   name="email"
+                  type="email"
+                  placeholder={t.emailPlaceholder}
                   required
-                  className=" text-right w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
-                  placeholder="....ایمیل خود را وارد کنید"
                 />
-              </div>
-              <div>
-                <label
-                  htmlFor="message"
-                  className=" text-right text-xl block font-medium mb-2"
-                >
-                  {" "}
-                  پیام شما
-                </label>
+              </label>
+              <label>
+                <span>{t.message}</span>
                 <textarea
-                  id="message"
                   name="message"
+                  placeholder={t.messagePlaceholder}
+                  rows="4"
                   required
-                  className=" resize-none text-right w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
-                  placeholder="....پیام شما"
                 />
-              </div>
-              <button
-                disabled={isSubmitting}
-                type="submit"
-                className={cn(
-                  "cosmic-button w-full flex items-center justify-center gap-2"
-                )}
-              >
-                {isSubmitting ? "...در حال ارسال" : "ارسال"}
-                <Send size={25} />
+              </label>
+              <button className="button button--primary" type="submit">
+                {t.submit}
+                <ArrowUpRight size={16} aria-hidden="true" />
               </button>
+              <p className="contact-form__note" aria-live="polite">
+                {isPrepared ? t.prepared : t.note}
+              </p>
             </form>
           </div>
         </div>

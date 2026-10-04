@@ -1,47 +1,149 @@
-import { ArrowDown } from "lucide-react";
+import {
+  ArrowUpRight,
+  Github,
+  Mail,
+  MapPin,
+} from "lucide-react";
+import { copy } from "../data/portfolio";
+import { useLanguage } from "../context/useLanguage";
+
+const email = "matin.muhammadi.2001@gmail.com";
+const github = "https://github.com/MatinMuhammadi1381";
 
 export const HeroSection = () => {
+  const { language } = useLanguage();
+  const t = copy[language];
+
   return (
-    <section
-      id="hero"
-      className=" relative min-h-screen flex flex-col items-center justify-center px-4"
-    >
-      <div className=" container max-w-4xl mx-auto text-center z-10">
-        <div className=" space-y-6">
-          <h1 className=" text-4xl md:text-6xl font-bold tracking-tight">
-            <span className=" opacity-0 animate-fade-in">سلام , من </span>
-            <span className=" text-primary opacity-0 animate-fade-in-delay-1">
-              متین{" "}
-            </span>
-            <span className=" text-gradient ml-2 opacity-0 animate-fade-in-delay-2">
-              {" "}
-              محمدی هستم
-            </span>
-          </h1>
-
-          <p className=" text-lg md:text-xl -mb-7 text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            برنامه‌نویس رابط کاربری با بیش از چهار سال تجربه
-            <br />           </p>
-           <p className=" text-lg md:text-xl mt-10 text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            در طراحی و پیاده‌سازی وب‌سایت‌های مدرن و
-            کاربرپسند
+    <section className="hero section-anchor" id="hero">
+      <div className="site-container hero__layout">
+        <div className="hero__content">
+          <p className="eyebrow">
+            <span className="status-dot" aria-hidden="true" />
+            {t.hero.eyebrow}
           </p>
-          <p className=" text-lg md:text-xl -mt-3 text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            مسلط به زبان‌ها و ابزارهای متنوع توسعه‌ی وب و تمرکز بر ایجاد رابط
-            کاربری بهینه و استاندارد
-          </p>
+          <h1>{t.hero.title}</h1>
+          <p className="hero__intro">{t.hero.intro}</p>
+          <p className="hero__detail">{t.hero.detail}</p>
 
-          <div className=" pt-4 opacity-0 animate-fade-in-delay-4">
-            <a href="#projects" id="#projects" className=" cosmic-button">
-              دیدن پروژه های من
+          <div className="hero__actions">
+            <a className="button button--primary" href="#projects">
+              {t.hero.primary}
+              <ArrowUpRight size={17} aria-hidden="true" />
+            </a>
+            <a
+              className="button button--secondary"
+              href={`${import.meta.env.BASE_URL}MatinMuhammadi.pdf`}
+              download="MatinMuhammadi.pdf"
+            >
+              {t.hero.secondary}
+            </a>
+          </div>
+
+          <div className="hero__meta">
+            <span>
+              <MapPin size={15} aria-hidden="true" />
+              {t.hero.location}
+            </span>
+            <span className="hero__availability">
+              <span className="status-dot" aria-hidden="true" />
+              {t.hero.available}
+            </span>
+          </div>
+
+          <div className="hero__socials" aria-label={t.hero.socialLabel}>
+            <a
+              href={github}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+            >
+              <Github size={18} aria-hidden="true" />
+              <span>GitHub</span>
+            </a>
+            <a href={`mailto:${email}`} aria-label="Email">
+              <Mail size={18} aria-hidden="true" />
+              <span>{t.hero.emailSocial}</span>
             </a>
           </div>
         </div>
-      </div>
 
-      <div className=" absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
-        <span className=" text-sm text-muted-foreground mb-2 ">Scroll</span>
-        <ArrowDown className=" h-5 w-5 text-primary" />
+        <div className="hero__visual">
+          <div className="code-panel">
+            <div className="code-panel__top">
+              <div className="window-controls" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </div>
+              <span
+                className="code-panel__label"
+                dir={language === "fa" ? "rtl" : "ltr"}
+              >
+                {t.hero.visualLabel}
+              </span>
+              <span className="code-panel__spacer" />
+            </div>
+            <div className="code-panel__workspace">
+              <aside className="code-rail" aria-hidden="true">
+                <span>01</span>
+                <span>02</span>
+                <span>03</span>
+                <span>04</span>
+                <span>05</span>
+                <span>06</span>
+                <span>07</span>
+              </aside>
+              <div className="code-content">
+                <div className="code-content__file">
+                  <span className="code-file-dot" aria-hidden="true" />
+                  {t.hero.terminalFile}
+                </div>
+                <pre aria-label={t.hero.visualLabel}>
+                  <code>
+                    <span className="code-purple">const</span>{" "}
+                    <span className="code-blue">product</span> = {"{"}
+                    {"\n"}
+                    {"  "}
+                    <span className="code-cyan">people</span>:{" "}
+                    <span className="code-green">"first"</span>,{"\n"}
+                    {"  "}
+                    <span className="code-cyan">quality</span>:{" "}
+                    <span className="code-green">"thoughtful"</span>,{"\n"}
+                    {"  "}
+                    <span className="code-cyan">growth</span>:{" "}
+                    <span className="code-green">"continuous"</span>
+                    {"\n"}
+                    {"};"}
+                  </code>
+                </pre>
+                <div className="code-divider" />
+                <ul
+                  className="code-principles"
+                  dir={language === "fa" ? "rtl" : "ltr"}
+                >
+                  {t.hero.terminalLines.map((line, index) => (
+                    <li key={line}>
+                      <span aria-hidden="true">0{index + 1}</span>
+                      {line}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="code-panel__footer">
+              <span>
+                <span className="status-dot" aria-hidden="true" />
+                {t.hero.terminalStatus}
+              </span>
+              <span>React · TypeScript</span>
+            </div>
+          </div>
+          <div className="hero__visual-note">
+            <span className="visual-note__line" />
+            <span>{t.hero.visualNote}</span>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,90 +1,147 @@
-import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { copy } from "../data/portfolio";
+import { useLanguage } from "../context/useLanguage";
 
-const navItems = [
-  { name: "Home", href: "/Matin_portfolio/#hero" },
-  { name: "About", href: "/Matin_portfolio/#about" },
-  { name: "Skills", href: "/Matin_portfolio/#skills" },
-  { name: "Projects", href: "/Matin_portfolio/#projects" },
-  { name: "Contacts", href: "/Matin_portfolio/#contacts" },
+const links = [
+  { id: "hero", key: "home" },
+  { id: "about", key: "about" },
+  { id: "projects", key: "projects" },
+  { id: "experience", key: "experience" },
+  { id: "skills", key: "skills" },
+  { id: "contact", key: "contact" },
 ];
 
 export const Navbar = () => {
+  const { language, setLanguage, isPersian } = useLanguage();
+  const t = copy[language];
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+    const updateScrollState = () => setIsScrolled(window.scrollY > 12);
+
+    updateScrollState();
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+    return () => window.removeEventListener("scroll", updateScrollState);
+  }, []);
+
+  useEffect(() => {
+    const sections = links
+      .map(({ id }) => document.getElementById(id))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (first, second) =>
+              second.intersectionRatio - first.intersectionRatio
+          )[0];
+
+        if (visible) setActiveSection(visible.target.id);
+      },
+      { rootMargin: "-25% 0px -60% 0px", threshold: [0, 0.2, 0.5] }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setMenuOpen(false);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  });
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
-    <nav
-      className={cn(
-        " fixed w-full z-40 transition-all duration-300",
-        isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
-      )}
-    >
-      <div className=" container flex items-center justify-between">
-        <a
-          href="#hero"
-          id="#hero"
-          className=" text-xl font-bold text-primary flex items-center"
-        >
-          <span className=" relative z-10 ">
-            <span className=" text-glow text-foreground">MatinMuhammadi </span>{" "}
-            Portfolio
-          </span>
+    <header className={`site-header${isScrolled ? " is-scrolled" : ""}`}>
+      <div className="site-container navbar">
+        <a className="brand" href="#hero" onClick={closeMenu}>
+          <img
+            className="brand__mark"
+            src={`${import.meta.env.BASE_URL}logo.svg`}
+            alt=""
+            width="38"
+            height="38"
+            aria-hidden="true"
+          />
+          <span className="brand__name">Matin Mohammadi</span>
         </a>
 
-        <div className=" hidden md:flex space-x-8">
-          {navItems.map((item, key) => (
+        <nav
+          className="navbar__links"
+          aria-label={isPersian ? "پیمایش اصلی" : "Primary navigation"}
+        >
+          {links.map(({ id, key }) => (
             <a
-              key={key}
-              href={item.href}
-              className=" text-foreground/80 hover:text-primary transition-colors duration-300"
+              key={id}
+              href={`#${id}`}
+              className={activeSection === id ? "is-active" : ""}
+              aria-current={activeSection === id ? "location" : undefined}
             >
-              {item.name}
+              {t.nav[key]}
             </a>
           ))}
-        </div>
+        </nav>
 
-        <button
-          onClick={() => setIsMenuOpen((prev) => !prev)}
-          className=" md:hidden p-2 text-foreground z-50"
-          aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
+        <div className="navbar__actions">
+          <button
+            className="language-switch"
+            type="button"
+            onClick={() => setLanguage(isPersian ? "en" : "fa")}
+            aria-label={t.nav.language}
+          >
+            <span className={!isPersian ? "is-current" : ""}>EN</span>
+            <span className="language-switch__divider" aria-hidden="true">
+              /
+            </span>
+            <span className={isPersian ? "is-current" : ""}>FA</span>
+          </button>
+
+          <button
+            className="menu-toggle"
+            type="button"
+            aria-label={menuOpen ? t.nav.closeMenu : t.nav.openMenu}
+            aria-expanded={menuOpen}
+            aria-controls={menuOpen ? "mobile-navigation" : undefined}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+      </div>
+
+      {menuOpen && (
+        <nav
+          className="mobile-navigation"
+          id="mobile-navigation"
+          aria-label={isPersian ? "پیمایش اصلی" : "Mobile navigation"}
         >
-          {""} {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          {""}
-        </button>
-        <div
-          className={cn(
-            " fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
-            " transition-all duration-300 md:hidden",
-            isMenuOpen
-              ? "opacity-100 pointer-events-auto"
-              : "opacity-0 pointer-events-none"
-          )}
-        >
-          <div className=" flex flex-col  space-y-8 text-xl">
-            {navItems.map((item, key) => (
+          <div className="site-container mobile-navigation__inner">
+            {links.map(({ id, key }) => (
               <a
-                key={key}
-                href={item.href}
-                className=" text-foreground/80 hover:text-primary transition-colors duration-300"
-                onClick={() => setIsMenuOpen(false)}
+                key={id}
+                href={`#${id}`}
+                className={activeSection === id ? "is-active" : ""}
+                aria-current={activeSection === id ? "location" : undefined}
+                onClick={closeMenu}
               >
-                {item.name}
+                {t.nav[key]}
               </a>
             ))}
           </div>
-        </div>
-      </div>
-    </nav>
+        </nav>
+      )}
+    </header>
   );
 };

@@ -1,123 +1,182 @@
-import { ArrowRight, ExternalLinkIcon, Github } from "lucide-react";
+import { ArrowUpRight, Github, Globe2 } from "lucide-react";
+import { copy, projects } from "../data/portfolio";
+import { useLanguage } from "../context/useLanguage";
 
-const projects = [
-  {
-    id: 1,
-    title: "سایت نمایش هوش مصنوعی",
-    description:
-      "سایتی برای نمایش هوش مصنوعی طراحی زیبا و شیک و نشان دهنده ی برای این که سایت هایی با ورودی تک صفحه ای و نشنان دادن زیبایی و سادگی در طراحی های خاص",
-    Image: "./Landing_page.png",
-    Tags: ["React", "Tailwind CSS", "Radix UI", "TypeScript"],
-    demoUrl: "https://matinmuhammadi1381.github.io/Landing_page/",
-    githubUrl: "https://github.com/matinmuhammadi1381/Landing_page",
-  },
-  {
-    id: 2,
-    title: "سایت نمایش محصولات نایک",
-    description:
-      "یه سایت با طراحی مینیمال و شیک برای نمایش محصولات نایک همراه با عکس و انیمیشن های مختلف با استفاده از ریکت و تیلویند ساخته شده",
-    Image: "./Nike.png",
-    Tags: ["React", "Tailwind CSS", "Radix UI"],
-    demoUrl: "https://matinmohamady0081.github.io/nike-project/",
-    githubUrl: "https://github.com/MatinMohamady0081/nike-project",
-  },
-  {
-    id: 3,
-    title: " سایتی آینده نگری برای بانکها ",
-    description:
-      "سایت با طراحی مدرن و دیدگاهی جدید به آینده ای مدرن از بانک ها  ساخته شده با طراحی یونیک و انیمیشن های مختلف با ریکت و تیلویند",
-    Image: "./Bank.png",
-    Tags: ["React", "Tailwind CSS", "Radix UI"],
-    demoUrl: "https://matinmohamady0081.github.io/bank-project/",
-    githubUrl: "https://github.com/MatinMohamady0081/bank-project",
-  },
-  {
-    id: 4,
-    title: " سایت ساخت فاکتور شرکتی ",
-    description:
-      "سایتی برای ساخت بارکد و فاکتور های شرکتی با طراحی ساده و مینیمال و راحت برای شرکت های کوچیک و بزرگ ساخته شده با ریمت ئ متریال یئ ای ",
-    Image: "./factor.png",
-    Tags: ["React", "metrial ui", "Radix UI"],
-    demoUrl: "https://github.com/MatinMohamady0081/project1",
-    githubUrl: "https://github.com/MatinMohamady0081/project1",
-  },
-];
+const ProjectActions = ({ project, title, t }) => (
+  <div className="project-actions">
+    <a
+      className="project-action"
+      href={project.github}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={`${t.github}: ${title}`}
+    >
+      <Github size={16} aria-hidden="true" />
+      <span>{t.github}</span>
+      <ArrowUpRight size={14} aria-hidden="true" />
+    </a>
+    {project.demo ? (
+      <a
+        className="project-action project-action--quiet"
+        href={project.demo}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={`${t.demo}: ${title}`}
+      >
+        <Globe2 size={16} aria-hidden="true" />
+        <span>{t.demo}</span>
+        <ArrowUpRight size={14} aria-hidden="true" />
+      </a>
+    ) : (
+      <span className="project-action project-action--disabled">
+        <span>{t.noDemo}</span>
+      </span>
+    )}
+  </div>
+);
+
+const TechnologyList = ({ technologies, label }) => (
+  <ul className="technology-list" aria-label={label}>
+    {technologies.map((technology) => (
+      <li key={technology}>{technology}</li>
+    ))}
+  </ul>
+);
 
 export const ProjectSection = () => {
+  const { language } = useLanguage();
+  const t = copy[language].projects;
+  const featured = projects.find((project) => project.featured);
+  const otherProjects = projects.filter((project) => !project.featured);
+
   return (
-    <section id="projects" className=" py-24 px-4 relative">
-      <div className=" container mx-auto max-w-5xl ">
-        <h2 className=" text-3xl md:text-4xl font-bold mb-4 text-center">
-          <span className=" text-primary">پروژه های</span> من{" "}
-        </h2>
-
-        <p className=" text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          بخشی از پروژه های که انجام داده ام و پروژه ها رو میتونید در اینجا
-          مشاهده کنید امیدوارم خوشتون بیاد و خوشحال میشم نظرتون رو برام ایمیل
-          کنید
-        </p>
-
-        <div className=" grid grid-cols-1 md:col-end-2 lg:grid-cols-3 gap-8">
-          {projects.map((projects, key) => (
-            <div
-              key={key}
-              className=" group bg-card rounded-lg overflow-hidden shadow-xs card-hover"
-            >
-              <div className=" h-48 overflow-hidden">
-                <img
-                  src={projects.Image}
-                  alt={projects.title}
-                  className=" w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-
-              <div className=" p-6">
-                <div className=" flex flex-wrap gap-2 mb-4">
-                  {projects.Tags.map((tag) => (
-                    <span className=" px-2 py-1 text-xs border font-medium rounded-full bg-primary/30 text-secondary-foreground">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <h3 className=" text-xl font-semibold mb-1">
-                  {" "}
-                  {projects.title}
-                </h3>
-                <p className="text-muted-foregroun text-sm mb-4">
-                  {projects.description}
-                </p>
-                <div className=" flex justify-between items-center mb-2 ml-2">
-                  <div className=" flex space-x-3">
-                    <a
-                      href={projects.demoUrl}
-                      target="-blank"
-                      className=" text-foreground/80 hover:text-primary transition-colors duration-300"
-                    >
-                      <ExternalLinkIcon size={20} />
-                    </a>
-                    <a
-                      target="-blank"
-                      className=" text-foreground/80 hover:text-primary transition-colors duration-300"
-                      href={projects.githubUrl}
-                    >
-                      <Github size={20} />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+    <section
+      className="section section--tinted section-anchor"
+      id="projects"
+    >
+      <div className="site-container">
+        <div className="section-heading section-heading--split">
+          <div>
+            <p className="eyebrow">{t.eyebrow}</p>
+            <h2>{t.title}</h2>
+          </div>
+          <div className="section-heading__aside">
+            <p className="section-heading__note">{t.intro}</p>
+            <span className="project-count">
+              <strong>{projects.length}</strong> {t.countLabel}
+            </span>
+          </div>
         </div>
 
-        <div className=" text-center mt-12">
-          <a
-            href="https://github.com/MatinMuhammadi1381"
-            target="_blank"
-            className=" cosmic-button w-fit flex items-center mx-auto gap-2"
-          >
-            گیت هاب من <ArrowRight size={16} />
-          </a>
+        {featured && (
+          <article className="featured-project">
+            <div className="featured-project__visual">
+              <img
+                src={featured.image}
+                alt={featured.alt[language]}
+                loading="lazy"
+                width="1440"
+                height="900"
+                onError={(event) => {
+                  event.currentTarget.src = featured.image.replace(
+                    "docs/screenshots/",
+                    ""
+                  );
+                }}
+              />
+              {featured.imageNote && (
+                <span className="image-note">
+                  {t.previewNotes[featured.imageNote]}
+                </span>
+              )}
+              <span className="featured-project__index" aria-hidden="true">
+                01
+              </span>
+            </div>
+            <div className="featured-project__content">
+              <p className="project-kicker">
+                <span className="project-featured-mark" aria-hidden="true" />
+                {t.featuredLabel}
+                <span className="project-kicker__separator">·</span>
+                {t.projectTypes[featured.type]}
+              </p>
+              <h3>{featured.title[language]}</h3>
+              <p className="featured-project__description">
+                {featured.description[language]}
+              </p>
+              <p className="featured-project__details">
+                {featured.details[language]}
+              </p>
+              <TechnologyList
+                technologies={featured.technologies}
+                label={t.technologiesLabel}
+              />
+              <ProjectActions
+                project={featured}
+                title={featured.title[language]}
+                t={t}
+              />
+            </div>
+          </article>
+        )}
+
+        <div className="projects-subheading">
+          <h3>{t.allLabel}</h3>
+          <span>02 / {String(projects.length).padStart(2, "0")}</span>
+        </div>
+
+        <div className="project-grid">
+          {otherProjects.map((project, index) => (
+            <article className="project-card" key={project.slug}>
+              <div className="project-card__image">
+                <img
+                  src={project.image}
+                  alt={project.alt[language]}
+                  loading="lazy"
+                  width="1440"
+                  height="900"
+                  onError={(event) => {
+                    event.currentTarget.src = project.image.replace(
+                      "docs/screenshots/",
+                      ""
+                    );
+                  }}
+                />
+                {project.imageNote && (
+                  <span className="image-note">
+                    {t.previewNotes[project.imageNote]}
+                  </span>
+                )}
+                <span className="project-card__index" aria-hidden="true">
+                  {String(index + 2).padStart(2, "0")}
+                </span>
+              </div>
+              <div className="project-card__content">
+                <p className="project-card__type">
+                  {t.projectTypes[project.type]}
+                </p>
+                <h4>{project.title[language]}</h4>
+                <p className="project-card__description">
+                  {project.description[language]}
+                </p>
+                <details className="project-details">
+                  <summary>
+                    {language === "fa" ? "دربارهٔ پروژه" : "Project notes"}
+                  </summary>
+                  <p>{project.details[language]}</p>
+                </details>
+                <TechnologyList
+                  technologies={project.technologies}
+                  label={t.technologiesLabel}
+                />
+                <ProjectActions
+                  project={project}
+                  title={project.title[language]}
+                  t={t}
+                />
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

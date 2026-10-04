@@ -2,41 +2,33 @@
 
 **English** · [فارسی](#فارسی)
 
-A responsive personal portfolio website for Matin Muhammadi, focused on modern web development, front-end engineering, and visual interface design.
-
-## Screenshots
-
-**Portfolio introduction · معرفی**
-
-![Portfolio introduction](docs/screenshots/home.png)
-
-**Skills · مهارت‌ها**
-
-![Portfolio skills](docs/screenshots/skills.png)
-
-**Selected projects · پروژه‌های منتخب**
-
-![Portfolio projects](docs/screenshots/projects.png)
+A dark, bilingual (English/Persian) portfolio for Matin Mohammadi, focused on frontend engineering, real applications, and a growing full-stack skill set.
 
 ## Features
 
-- About section with experience and resume download
-- Project showcase with images, technology tags, demos, and repository links
-- Filterable skills section with front-end, back-end, mobile, and tooling categories
-- Contact section and social links
-- Responsive navigation and footer
-- Theme toggle and animated visual background
-- Not-found page for unsupported routes
+- English-first language switch with persistent Persian RTL support
+- Dark-only responsive design and keyboard-accessible mobile navigation
+- Seven verified public projects, with Bus Tracking featured and honest demo/source links
+- Local project previews and recognizable technology icons
+- Installable offline-capable PWA with app icons and automatic updates
+- Experience, technology stack, resume download, and professional contact links
+- Accessible contact form that prepares an email draft without storing submissions
+- Search/social metadata, robots.txt, and sitemap
 - GitHub Pages deployment configuration
+
+### Project previews and technology icons
+
+Project screenshots are retained under `docs/screenshots/` so the featured
+projects remain viewable in the deployed site. The SVG technology marks in
+`public/tech-icons/` are from [Devicon](https://github.com/devicons/devicon)
+and [Simple Icons](https://github.com/simple-icons/simple-icons).
 
 ## Tech Stack
 
 - React 19
 - Vite
-- Tailwind CSS 4
-- React Router
+- Custom CSS
 - Lucide React
-- Radix UI Toast
 - JavaScript (JSX)
 
 ## Getting Started
@@ -50,6 +42,7 @@ npm run dev
 
 Open the local URL shown by Vite, usually http://localhost:5173.
 On Windows, `INSTALL-DEPENDENCIES.bat` installs the exact dependencies from the lockfile.
+Builds include a web app manifest and service worker for installation and offline access.
 
 ## Available Scripts
 
@@ -69,16 +62,16 @@ npm run deploy    # Build and publish to GitHub Pages
 ~~~text
 src/
 ├── components/   # Portfolio sections and reusable UI
+├── context/      # English/Persian language state
+├── data/         # Translations and verified project metadata
 ├── pages/        # Page-level views
-├── hooks/        # Reusable React hooks
-├── lib/          # Utility helpers
 ├── App.jsx       # Application shell
 └── main.jsx      # Application entry point
 ~~~
 
 ## Notes
 
-Project cards and resume links are configured in the source code and point to the demos and assets included with the portfolio.
+Project metadata is maintained in `src/data/portfolio.js`. The linked repository READMEs describe each project's actual scope; projects without a published live demo link to source only. The Bus Tracking screenshot and some other previews contain sample/demo data.
 
 ---
 
@@ -88,18 +81,15 @@ Project cards and resume links are configured in the source code and point to th
 
 ### امکانات
 
-- معرفی کوتاه، مهارت‌ها و سوابق
-- نمایش پروژه‌ها همراه با تصویر، فناوری‌ها و پیوندهای مربوط
-- دسته‌بندی مهارت‌ها و تغییر پوستهٔ صفحه
-- بخش راه‌های ارتباطی و نمایش مناسب در اندازه‌های مختلف
-
-### تصاویر
-
-سه تصویر بالا به‌ترتیب صفحهٔ آغازین، مهارت‌ها و پروژه‌های منتخب را نشان می‌دهند.
+- معرفی دوزبانه با زبان انگلیسی پیش‌فرض و پشتیبانی کامل از چیدمان فارسی RTL
+- پوستهٔ تیرهٔ ثابت، پیمایش واکنش‌گرا و منوی مناسب موبایل
+- نمایش هفت پروژهٔ عمومی بررسی‌شده همراه تصویر، فناوری‌ها، کد منبع و پیش‌نمایش‌های منتشرشده
+- نمایش سوابق، رزومه، فناوری‌ها با آیکون و راه‌های تماس
+- فرم تماس که پیش‌نویس ایمیل را آماده می‌کند و پیام‌ها را در سایت ذخیره نمی‌کند
 
 ### فناوری‌ها
 
-React 19، Vite، Tailwind CSS 4، React Router، Lucide React، Radix UI و JavaScript.
+React 19، Vite، CSS، Lucide React و JavaScript.
 
 ### راه‌اندازی
 
